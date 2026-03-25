@@ -1,5 +1,10 @@
 import { useState } from 'react';
+import emailjs from '@emailjs/browser';
 import './AppointmentsPage.css';
+
+const EMAILJS_SERVICE_ID  = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+const EMAILJS_PUBLIC_KEY  = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
 const SERVICE_TYPES = [
   'AC Repair',
@@ -39,6 +44,8 @@ const INITIAL = {
 
 export default function AppointmentsPage() {
   const [step, setStep] = useState(1);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState('');
   const [form, setForm] = useState(() => {
     // Pre-fill from hero booking card if user came from homepage
     try {
@@ -94,10 +101,43 @@ export default function AppointmentsPage() {
     return Object.keys(e).length === 0;
   };
 
-  const handleNext = () => {
-    if (step === 1 && validateStep1()) setStep(2);
-    else if (step === 2 && validateStep2()) setStep(3);
-    else if (step === 3 && validateStep3()) setStep(4);
+  const handleNext = async () => {
+    if (step === 1 && validateStep1()) { setStep(2); return; }
+    if (step === 2 && validateStep2()) { setStep(3); return; }
+    if (step === 3 && validateStep3()) {
+      setSubmitting(true);
+      setSubmitError('');
+      const timeLabel = TIME_SLOTS.find((s) => s.id === form.timeSlot)?.label ?? form.timeSlot;
+      const dateLabel = new Date(form.date + 'T12:00').toLocaleDateString('en-US', {
+        weekday: 'long', year: 'numeric', month: 'long', day: 'numeric',
+      });
+      const bookingRef = 'CR-' + Date.now().toString(36).toUpperCase();
+      try {
+        await emailjs.send(
+          EMAILJS_SERVICE_ID,
+          EMAILJS_TEMPLATE_ID,
+          {
+            booking_ref:      bookingRef,
+            customer_name:    `${form.firstName} ${form.lastName}`,
+            customer_email:   form.email,
+            customer_phone:   form.phone,
+            service_type:     form.serviceType,
+            preferred_date:   dateLabel,
+            preferred_time:   timeLabel,
+            service_address:  `${form.address}, ${form.city}`,
+            notes:            form.notes || 'None',
+          },
+          EMAILJS_PUBLIC_KEY,
+        );
+      } catch (err) {
+        console.error('EmailJS error:', err);
+        // Still advance — don't block user if email fails
+        setSubmitError('Note: email notification failed. We still received your request.');
+      } finally {
+        setSubmitting(false);
+        setStep(4);
+      }
+    }
   };
 
   const handleBack = () => setStep((s) => Math.max(1, s - 1));
@@ -310,9 +350,9 @@ export default function AppointmentsPage() {
                   />
                 </div>
                 <div className="step-actions">
-                  <button className="btn btn-outline" onClick={handleBack}>← Back</button>
-                  <button className="btn btn-orange" onClick={handleNext}>
-                    Confirm Booking ✓
+                  <button className="btn btn-outline" onClick={handleBack} disabled={submitting}>← Back</button>
+                  <button className="btn btn-orange" onClick={handleNext} disabled={submitting}>
+                    {submitting ? 'Submitting…' : 'Confirm Booking ✓'}
                   </button>
                 </div>
               </div>
@@ -326,6 +366,11 @@ export default function AppointmentsPage() {
                 <p style={{ color: 'var(--gray-600)', marginBottom: 'var(--space-4)' }}>
                   Thank you, {form.firstName}! Your service request has been submitted successfully.
                 </p>
+                {submitError && (
+                  <p style={{ color: 'var(--red)', fontSize: '0.85rem', marginBottom: 'var(--space-4)' }}>
+                    ⚠️ {submitError}
+                  </p>
+                )}
                 <div className="booking-confirmation__summary">
                   <h3>Booking Summary</h3>
                   <div className="booking-confirmation__row">
