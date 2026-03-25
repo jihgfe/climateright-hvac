@@ -131,8 +131,8 @@ export default function AppointmentsPage() {
         );
       } catch (err) {
         console.error('EmailJS error:', err);
-        // Still advance — don't block user if email fails
-        setSubmitError('Note: email notification failed. We still received your request.');
+        const msg = err?.text || err?.message || JSON.stringify(err);
+        setSubmitError(`Email notification failed (${msg}). We still received your request.`);
       } finally {
         setSubmitting(false);
         setStep(4);
