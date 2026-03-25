@@ -1,0 +1,165 @@
+.chatbot-widget {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 950;
+}
+
+.chatbot-widget__btn {
+  width: 58px;
+  height: 58px;
+  border-radius: var(--radius-full);
+  background: linear-gradient(135deg, var(--blue), var(--blue-dark));
+  color: var(--white);
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-lg);
+  border: none;
+  cursor: pointer;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow var(--transition);
+  position: relative;
+  outline: none;
+}
+
+.chatbot-widget__btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 12px 36px rgba(0,82,165,0.35);
+}
+
+.chatbot-widget__btn:active {
+  transform: scale(0.97);
+}
+
+.chatbot-widget__btn--open {
+  background: linear-gradient(135deg, var(--gray-600), var(--gray-800));
+}
+
+.chatbot-widget__badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  min-width: 20px;
+  height: 20px;
+  background: var(--orange);
+  color: var(--white);
+  font-size: 0.72rem;
+  font-weight: 700;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 4px;
+  border: 2px solid var(--white);
+  animation: badgePop 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes badgePop {
+  from { transform: scale(0); }
+  to { transform: scale(1); }
+}
+
+.chatbot-widget__tooltip {
+  position: absolute;
+  bottom: 70px;
+  right: 0;
+  background: var(--gray-900);
+  color: var(--white);
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 0.4rem 0.85rem;
+  border-radius: var(--radius-md);
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(4px);
+  transition: all var(--transition);
+}
+
+.chatbot-widget__tooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  right: 20px;
+  border: 5px solid transparent;
+  border-top-color: var(--gray-900);
+}
+
+.chatbot-widget__btn:hover .chatbot-widget__tooltip,
+.chatbot-widget__btn:focus .chatbot-widget__tooltip {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Pulse ring for attention */
+.chatbot-widget__pulse {
+  position: absolute;
+  inset: -4px;
+  border-radius: var(--radius-full);
+  border: 2px solid var(--blue);
+  opacity: 0;
+  animation: pulseRing 3s ease-out 2s 3;
+}
+
+@keyframes pulseRing {
+  0% { transform: scale(1); opacity: 0.6; }
+  100% { transform: scale(1.5); opacity: 0; }
+}
+
+/* Proactive promo bubble */
+.chatbot-widget__promo {
+  position: absolute;
+  bottom: 72px;
+  right: 0;
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  box-shadow: var(--shadow-lg);
+  border-radius: var(--radius-md);
+  padding: 0.75rem 2.2rem 0.75rem 1rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--gray-900);
+  white-space: nowrap;
+  cursor: pointer;
+  animation: promoPop 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  z-index: 10;
+}
+
+.chatbot-widget__promo::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  right: 22px;
+  border: 6px solid transparent;
+  border-top-color: var(--white);
+}
+
+.chatbot-widget__promo-close {
+  position: absolute;
+  top: 6px;
+  right: 8px;
+  background: none;
+  border: none;
+  color: var(--gray-400);
+  font-size: 0.75rem;
+  cursor: pointer;
+  padding: 2px 4px;
+  line-height: 1;
+}
+
+.chatbot-widget__promo-close:hover {
+  color: var(--gray-900);
+}
+
+@keyframes promoPop {
+  from { opacity: 0; transform: scale(0.85) translateY(8px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+@media (max-width: 480px) {
+  .chatbot-widget {
+    bottom: 16px;
+    right: 16px;
+  }
+}

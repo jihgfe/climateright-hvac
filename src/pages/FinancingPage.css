@@ -1,0 +1,272 @@
+.financing-page {
+  padding-top: calc(var(--navbar-height) + var(--emergency-height) + var(--space-8));
+  min-height: 100vh;
+}
+
+.financing-hero {
+  background: linear-gradient(135deg, #001d3d 0%, var(--blue-dark) 60%, var(--blue) 100%);
+  padding: var(--space-16) 0;
+  text-align: center;
+  color: var(--white);
+  margin-bottom: var(--space-16);
+}
+
+.financing-hero h1 {
+  font-size: 2.8rem;
+  font-weight: 900;
+  color: var(--white);
+  margin-bottom: var(--space-4);
+}
+
+.financing-hero__highlight {
+  color: var(--orange);
+}
+
+.financing-hero p {
+  font-size: 1.1rem;
+  color: rgba(255,255,255,0.85);
+  max-width: 560px;
+  margin: 0 auto var(--space-6);
+}
+
+/* Plans */
+.financing-plans {
+  padding-bottom: var(--space-20);
+}
+
+.financing-plans__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-6);
+  margin-bottom: var(--space-8);
+}
+
+.financing-card {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: var(--space-8);
+  box-shadow: var(--shadow);
+  border: 2px solid var(--gray-200);
+  position: relative;
+  transition: all var(--transition);
+}
+
+.financing-card:hover {
+  border-color: var(--blue);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.financing-card--best {
+  border-color: var(--blue);
+}
+
+.financing-card__badge {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--orange);
+  color: var(--white);
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.25rem 0.85rem;
+  border-radius: var(--radius-full);
+  white-space: nowrap;
+}
+
+.financing-card__tier {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--blue);
+  margin-bottom: var(--space-2);
+}
+
+.financing-card__name {
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: var(--gray-900);
+  margin-bottom: var(--space-2);
+}
+
+.financing-card__headline {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--blue);
+  margin-bottom: var(--space-5);
+  line-height: 1.3;
+}
+
+.financing-card__features {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin-bottom: var(--space-6);
+}
+
+.financing-card__feature {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-size: 0.88rem;
+  color: var(--gray-700, #374151);
+}
+
+.financing-card__feature .check {
+  color: var(--green);
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.financing-card__btn {
+  width: 100%;
+  justify-content: center;
+}
+
+/* Estimator */
+.financing-estimator {
+  padding: var(--space-20) 0;
+  background: var(--gray-50);
+}
+
+.estimator-card {
+  max-width: 640px;
+  margin: 0 auto;
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: var(--space-8);
+  box-shadow: var(--shadow-md);
+}
+
+.estimator-card h3 {
+  font-size: 1.4rem;
+  font-weight: 800;
+  margin-bottom: var(--space-6);
+  color: var(--gray-900);
+}
+
+.estimator__result {
+  margin-top: var(--space-6);
+  background: var(--blue-light);
+  border-radius: var(--radius-md);
+  padding: var(--space-6);
+  text-align: center;
+}
+
+.estimator__monthly {
+  font-size: 3rem;
+  font-weight: 900;
+  color: var(--blue);
+  line-height: 1;
+}
+
+.estimator__monthly span {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--gray-600);
+}
+
+.estimator__plan-info {
+  font-size: 0.9rem;
+  color: var(--gray-600);
+  margin-top: var(--space-2);
+}
+
+/* Plan selector */
+.plan-selector {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-3);
+}
+
+.plan-option {
+  position: relative;
+}
+
+.plan-option input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.plan-option label {
+  display: block;
+  padding: var(--space-4);
+  border: 2px solid var(--gray-200);
+  border-radius: var(--radius);
+  cursor: pointer;
+  text-align: center;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--gray-600);
+  transition: all var(--transition);
+}
+
+.plan-option label:hover {
+  border-color: var(--blue);
+  background: var(--blue-light);
+}
+
+.plan-option input:checked + label {
+  background: var(--blue);
+  border-color: var(--blue);
+  color: var(--white);
+}
+
+/* CTA */
+.financing-cta {
+  padding: var(--space-20) 0;
+}
+
+.financing-cta__inner {
+  background: linear-gradient(135deg, var(--blue-dark) 0%, var(--blue) 100%);
+  border-radius: var(--radius-xl);
+  padding: var(--space-12);
+  text-align: center;
+  color: var(--white);
+}
+
+.financing-cta__inner h2 {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--white);
+  margin-bottom: var(--space-4);
+}
+
+.financing-cta__inner p {
+  font-size: 1.05rem;
+  color: rgba(255,255,255,0.8);
+  margin-bottom: var(--space-6);
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Disclaimer */
+.financing-disclaimer {
+  padding: var(--space-8) 0 var(--space-16);
+  background: var(--gray-50);
+}
+
+.financing-disclaimer p {
+  font-size: 0.78rem;
+  color: var(--gray-400);
+  line-height: 1.7;
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .financing-plans__grid {
+    grid-template-columns: 1fr;
+  }
+  .plan-selector {
+    grid-template-columns: 1fr;
+  }
+  .financing-hero h1 {
+    font-size: 2rem;
+  }
+}

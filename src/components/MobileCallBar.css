@@ -1,0 +1,66 @@
+.mobile-call-bar {
+  display: none; /* hidden on desktop */
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 900;
+  height: 58px;
+  box-shadow: 0 -4px 24px rgba(0,0,0,0.18);
+}
+
+.mobile-call-bar__call,
+.mobile-call-bar__book {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-family: var(--font);
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: opacity 0.15s ease;
+  height: 100%;
+}
+
+.mobile-call-bar__call {
+  background: #003875;
+  color: #fff;
+}
+
+.mobile-call-bar__call:active {
+  opacity: 0.85;
+}
+
+.mobile-call-bar__book {
+  background: #FF6B2B;
+  color: #fff;
+}
+
+.mobile-call-bar__book:active {
+  opacity: 0.85;
+}
+
+.mobile-call-bar__divider {
+  width: 1px;
+  background: rgba(255,255,255,0.25);
+  height: 100%;
+  flex-shrink: 0;
+}
+
+.mobile-call-bar__icon {
+  font-size: 1rem;
+}
+
+/* Only show on mobile */
+@media (max-width: 768px) {
+  .mobile-call-bar {
+    display: flex;
+  }
+
+  /* Push chatbot widget above the bar */
+  .chatbot-widget {
+    bottom: 72px !important;
+  }
+}

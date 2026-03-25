@@ -1,0 +1,246 @@
+.about-page {
+  padding-top: calc(var(--navbar-height) + var(--emergency-height) + var(--space-8));
+  min-height: 100vh;
+}
+
+.about-hero {
+  background: linear-gradient(135deg, #001d3d 0%, var(--blue-dark) 60%, var(--blue) 100%);
+  padding: var(--space-16) 0;
+  color: var(--white);
+  text-align: center;
+  margin-bottom: var(--space-16);
+}
+
+.about-hero h1 {
+  font-size: 2.8rem;
+  font-weight: 900;
+  color: var(--white);
+  margin-bottom: var(--space-4);
+}
+
+.about-hero p {
+  font-size: 1.15rem;
+  color: rgba(255,255,255,0.8);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Story section */
+.about-story {
+  padding: 0 0 var(--space-20);
+}
+
+.about-story__inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-16);
+  align-items: center;
+}
+
+.about-story__image {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  aspect-ratio: 4/3;
+  background: var(--gray-100);
+}
+
+.about-story__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.about-story__content {}
+
+.about-story__content h2 {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--gray-900);
+  margin-bottom: var(--space-5);
+}
+
+.about-story__content p {
+  font-size: 0.95rem;
+  color: var(--gray-600);
+  line-height: 1.75;
+  margin-bottom: var(--space-4);
+}
+
+.about-story__mission {
+  background: var(--blue-light);
+  border-left: 4px solid var(--blue);
+  padding: var(--space-5);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  margin-top: var(--space-6);
+}
+
+.about-story__mission p {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--blue-dark);
+  font-style: italic;
+  margin: 0;
+}
+
+/* Team */
+.about-team {
+  padding: var(--space-20) 0;
+  background: var(--gray-50);
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-6);
+}
+
+.team-card {
+  background: var(--white);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: transform var(--transition), box-shadow var(--transition);
+  text-align: center;
+}
+
+.team-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.team-card__image {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  background: var(--gray-100);
+}
+
+.team-card__body {
+  padding: var(--space-5);
+}
+
+.team-card__name {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--gray-900);
+  margin-bottom: var(--space-1);
+}
+
+.team-card__title {
+  font-size: 0.82rem;
+  color: var(--blue);
+  font-weight: 600;
+  margin-bottom: var(--space-3);
+}
+
+.team-card__bio {
+  font-size: 0.82rem;
+  color: var(--gray-600);
+  line-height: 1.6;
+}
+
+/* Certifications */
+.about-certs {
+  padding: var(--space-20) 0;
+  background: var(--white);
+}
+
+.certs-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-6);
+}
+
+.cert-card {
+  text-align: center;
+  padding: var(--space-8) var(--space-5);
+  border: 2px solid var(--gray-200);
+  border-radius: var(--radius-md);
+  transition: all var(--transition);
+}
+
+.cert-card:hover {
+  border-color: var(--blue);
+  background: var(--blue-light);
+}
+
+.cert-card__icon {
+  font-size: 2.5rem;
+  margin-bottom: var(--space-3);
+}
+
+.cert-card__name {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--gray-900);
+  margin-bottom: var(--space-2);
+}
+
+.cert-card__desc {
+  font-size: 0.82rem;
+  color: var(--gray-600);
+}
+
+/* Gallery */
+.about-gallery {
+  padding: var(--space-20) 0;
+  background: var(--gray-50);
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-4);
+}
+
+.gallery-item {
+  border-radius: var(--radius);
+  overflow: hidden;
+  aspect-ratio: 4/3;
+  background: var(--gray-100);
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-slow);
+}
+
+.gallery-item:hover img {
+  transform: scale(1.05);
+}
+
+@media (max-width: 1024px) {
+  .team-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .certs-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .about-story__inner {
+    grid-template-columns: 1fr;
+  }
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .about-hero h1 {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .team-grid {
+    grid-template-columns: 1fr;
+  }
+  .certs-grid {
+    grid-template-columns: 1fr;
+  }
+  .gallery-grid {
+    grid-template-columns: 1fr;
+  }
+}
